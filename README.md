@@ -1,5 +1,5 @@
 # Overview
-This is a RESTFul web service that is used by a fictional company called Simple Food Solutions. The primary functions of this service are to provide recipe information via keyword and id. This service will return JSON data that can be processed and used.
+This is a RESTFul web service that is used by a fictional company called Simple Food Solutions. The primary functions of this service are to provide recipe information via keyword. This service will return JSON data that can be processed and used.
 
 
 # Technologies used
