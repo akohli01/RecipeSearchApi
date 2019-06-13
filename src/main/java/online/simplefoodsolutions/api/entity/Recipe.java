@@ -4,9 +4,11 @@ import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @JsonbPropertyOrder(value = {"id", "title", "description"})
+@Table(name = "recipe")
 public class Recipe
 {
     @Id

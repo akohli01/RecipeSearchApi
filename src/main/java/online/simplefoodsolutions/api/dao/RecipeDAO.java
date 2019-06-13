@@ -6,5 +6,10 @@ import java.util.List;
 
 public interface RecipeDAO
 {
-    public List<Recipe> getRecipeByTitle(String title);
+    List<Recipe> getRecipeByTitle(String title);
+
+    List<Recipe> getRecipeByTitleSortedAlphabetically(String title);
+
+    Recipe getRecipeByID(int id);
+
 }

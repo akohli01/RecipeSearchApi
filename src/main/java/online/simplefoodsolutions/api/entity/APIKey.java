@@ -1,11 +1,9 @@
 package online.simplefoodsolutions.api.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "apikey")
 public class APIKey
 {
     @Id

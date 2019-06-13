@@ -8,7 +8,6 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
 import java.util.List;
 
 public class AuthenticationFilter implements ContainerRequestFilter
@@ -16,7 +15,7 @@ public class AuthenticationFilter implements ContainerRequestFilter
     private static final String AUTHORIZATION_PROPERTY = "Authorization";
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException
+    public void filter(ContainerRequestContext containerRequestContext)
     {
         final MultivaluedMap<String, String> headers = containerRequestContext.getHeaders();
 
@@ -24,13 +23,15 @@ public class AuthenticationFilter implements ContainerRequestFilter
 
         APIKeyDAO apiKeyDAO = new APIKeyImplementation();
 
-        if (!apiKeyDAO.isAPIKeyCorrect(authorization.get(0)))
+        try
         {
-            containerRequestContext.abortWith(Response.status(Response.Status.FORBIDDEN).entity("Unauthorized access").build());
-            return;
+            if (authorization.get(0) == null || !apiKeyDAO.isAPIKeyCorrect(authorization.get(0)))
+            {
+                containerRequestContext.abortWith(Response.status(Response.Status.FORBIDDEN).entity("Cause:Incorrect API key").build());
+            }
+        } catch (NullPointerException exception)
+        {
+            containerRequestContext.abortWith(Response.status(Response.Status.FORBIDDEN).entity("Cause: No api key provided").build());
         }
-
-        System.out.println(authorization.get(0));
-
     }
 }

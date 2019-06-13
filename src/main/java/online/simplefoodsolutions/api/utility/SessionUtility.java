@@ -24,7 +24,6 @@ public class SessionUtility
 
     public static Session getSession()
     {
-
         return getInstance().sessionFactory.openSession();
     }
 }
